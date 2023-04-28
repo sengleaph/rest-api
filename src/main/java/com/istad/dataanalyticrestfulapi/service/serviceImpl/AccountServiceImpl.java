@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
-    //inject repository
-    private final AccountRepository accountRepository;
-    AccountServiceImpl(AccountRepository accountRepository){
+    final private AccountRepository accountRepository;
+
+    public AccountServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
@@ -29,8 +29,14 @@ public class AccountServiceImpl implements AccountService {
     public int updateAccount(Account account, int id) {
         return 0;
     }
+
     @Override
     public Account findAccountByID(int id) {
+        return null;
+    }
+
+    @Override
+    public Account findAccountById(int id) {
         return accountRepository.findAccountByID(id);
     }
 }

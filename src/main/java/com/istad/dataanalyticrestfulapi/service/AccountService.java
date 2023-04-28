@@ -10,4 +10,6 @@ public interface AccountService {
     int createAccount(Account account);
     int updateAccount(Account account , int id);
     Account findAccountByID(int id);
+
+    Account findAccountById(int id);
 }

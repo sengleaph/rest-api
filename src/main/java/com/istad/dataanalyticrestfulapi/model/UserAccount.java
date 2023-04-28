@@ -1,4 +1,4 @@
-package com.example.restfulapi.model;
+package com.istad.dataanalyticrestfulapi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

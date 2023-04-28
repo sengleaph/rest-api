@@ -1,10 +1,10 @@
-package com.example.restfulapi.controller;
+package com.istad.dataanalyticrestfulapi.controller;
 
-import com.example.restfulapi.mapper.AutoAccountMapper;
-import com.example.restfulapi.model.Account;
-import com.example.restfulapi.model.response.AccountResponse;
-import com.example.restfulapi.service.AccountService;
-import com.example.restfulapi.utils.Response;
+import com.istad.dataanalyticrestfulapi.mapper.AutoAccountMapper;
+import com.istad.dataanalyticrestfulapi.model.Account;
+import com.istad.dataanalyticrestfulapi.model.response.AccountResponse;
+import com.istad.dataanalyticrestfulapi.service.AccountService;
+import com.istad.dataanalyticrestfulapi.util.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,12 +1,13 @@
-package com.example.restfulapi.mapper;
+package com.istad.dataanalyticrestfulapi.mapper;
 
-import com.example.restfulapi.model.Account;
-import com.example.restfulapi.model.response.AccountResponse;
+import com.istad.dataanalyticrestfulapi.model.Account;
+import com.istad.dataanalyticrestfulapi.model.response.AccountResponse;
+//import org.apache.ibatis.annotations.Mapper;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper (componentModel = "spring")
 public interface AutoAccountMapper {
     // account to account response
     List<AccountResponse> mapToAccountResponse(List<Account> accounts);

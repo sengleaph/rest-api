@@ -1,9 +1,9 @@
-package com.example.restfulapi.controller;
+package com.istad.dataanalyticrestfulapi.controller;
 
-import com.example.restfulapi.model.User;
-import com.example.restfulapi.model.UserAccount;
-import com.example.restfulapi.service.UserService;
-import com.example.restfulapi.utils.Response;
+import com.istad.dataanalyticrestfulapi.model.User;
+import com.istad.dataanalyticrestfulapi.model.UserAccount;
+import com.istad.dataanalyticrestfulapi.service.UserService;
+import com.istad.dataanalyticrestfulapi.util.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
