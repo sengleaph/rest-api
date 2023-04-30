@@ -1,10 +1,10 @@
 package com.istad.dataanalyticrestfulapi.controller;
 
+import com.istad.dataanalyticrestfulapi.model.Request.UserRequest;
 import com.istad.dataanalyticrestfulapi.model.User;
 import com.istad.dataanalyticrestfulapi.model.UserAccount;
 import com.istad.dataanalyticrestfulapi.service.UserService;
 import com.istad.dataanalyticrestfulapi.util.Response;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,30 +36,27 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/{id}")
-    public Response<User> getUserById(@PathVariable int id){
-        try {
-            if(isUserExists((id))){
-                return Response.<User>ok().setPayload(userService.findUserByID(id)).setMessage("Successfully retrieved a user with id "+id);
-            } else {
-                return userNotFound(id);
-            }
-        } catch (Exception exception) {
-            return Response.<User>exception().setSuccess(false).setMessage("Failed to retrieve a user with id "+id);
-        }
-    }
 
     @PostMapping("/new-user")
-    public Response<User> createUser(@RequestBody User user){
-        try{
-            userService.createNewUser(user);
-            return  Response.<User>createSuccess().setPayload(user).setMessage("Successfully created a new user!");
-        }catch (Exception exception){
-            return Response.<User>exception().setSuccess(false).setMessage("Failed to create new user!");
-        }
+    public Response <User> createUser(@RequestBody UserRequest request, int userId){
+       try{
+//           User obj = new User().setUserId(1).setUsername()
+//           UserRequest UserRequest;
+           int affectedRow = userService.createNewUser(request);
+            if(affectedRow>0){
+                User response = new User().setUsername(request.getUsername()).setAddress(request.getAddress()).setGender(request.getGender()).setUserId(userId);
+
+                return Response.<User>createSuccess().setPayload(response).setMessage("create user Successfully").setSuccess(true);
+            }else{
+                return Response.<User>bedRequest().setMessage("bed request!");
+            }
+       }catch (Exception ex){
+           return Response.<User>exception().setMessage("Exceotion occur! failed to create a new user").setSuccess(false);
+
+       }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{user}")
     public Response<User> updateUser(@PathVariable int id, @RequestBody User user){
         try{
             if(isUserExists(id)){
@@ -75,18 +72,18 @@ public class UserRestController {
 
     }
 
-    @DeleteMapping("/{id}")
-    public Response<User> deleteUser(@PathVariable int id){
+    @DeleteMapping("/deleteUser/{id}")
+    public Response<List<Response>> removeUser(@PathVariable("id") int id){
         try {
-            if(isUserExists(id)){
-                userService.removeUser(id);
-                return Response.<User>deleteSuccess().setMessage("Successfully deleted a user with id "+id);
+            int deleteUser = userService.removeUser(id);
+            if (deleteUser>0){
+                return Response.<List<Response>>deleteSuccess().setMessage("Successfully Delete account by Id !!!");
+            }else {
+                return Response.<List<Response>>notFound().setMessage("Undefined the Id to delete!!!!");
             }
-            else {
-                return userNotFound(id);
-            }
-        } catch (Exception exception){
-            return Response.<User>exception().setMessage("Fail to delete a user with id "+ id).setSuccess(false);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return Response.<List<Response>>exception().setMessage("Failed to remove the user !!!!");
         }
     }
 

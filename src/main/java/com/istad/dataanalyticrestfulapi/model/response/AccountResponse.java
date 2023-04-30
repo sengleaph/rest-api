@@ -1,6 +1,7 @@
 package com.istad.dataanalyticrestfulapi.model.response;
 
 import com.istad.dataanalyticrestfulapi.model.AccountType;
+import com.istad.dataanalyticrestfulapi.util.Response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,6 @@ public class AccountResponse {
     private String phoneNumber;
     private int transferLimit;
     private AccountType accountType;
-}
+
+    }
+

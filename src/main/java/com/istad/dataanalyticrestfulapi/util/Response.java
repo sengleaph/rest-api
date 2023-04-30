@@ -19,6 +19,7 @@ public class Response<T> {
     private boolean success = false;
     private  Object metadata;
     private Status status;
+    private Object Address;
 
     public static <T> Response<T> ok(){
         Response<T> response = new Response<>();
@@ -55,6 +56,11 @@ public class Response<T> {
         response.setStatus(Status.EXCEPTION);
         return response;
     }
-
+    public static <T> Response <T> bedRequest(){
+        Response <T> response = new Response<>();
+        response.setStatus(Status.BAD_REQUEST);
+        response.setSuccess(false);
+        return response;
+    }
 
 }
